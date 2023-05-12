@@ -6,7 +6,7 @@
 /*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:28:50 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/12 18:53:23 by mdoumi           ###   ########.fr       */
+/*   Updated: 2023/05/12 19:31:01 by mdoumi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ int	check_line(char *str)
 
 void	ft_exit()
 {
+	int	i;
+
+	i = 0;
+	while (global->env[i])
+		free(global->env[i++]);
+	free(global->env);
+	free(global);
 	exit(0);
 }
 
@@ -66,6 +73,25 @@ char	*ft_lower(char *str)
 	return (str);
 }
 
+void	ft_env(void)
+{
+	int	i;
+
+	i = 0;
+	while (global->env[i])
+		printf("%s\n", global->env[i++]);
+}
+
+void	ft_pwd(void)
+{
+	char	*str;
+
+	str = getcwd(NULL, 0);
+	global->last_status = errno;
+	printf("%s\n", str);
+	free(str);
+}
+
 void	launch_command(char *str)
 {
 	if (ft_strcmp(ft_lower(str), "exit") == 0)
@@ -79,9 +105,13 @@ void	launch_command(char *str)
 	else if (ft_strcmp(ft_lower(str), "cd") == 0)
 	{}
 	else if (ft_strcmp(ft_lower(str), "pwd") == 0)
-	{}
+	{
+		ft_pwd();
+	}
 	else if (ft_strcmp(ft_lower(str), "env") == 0)
-	{}
+	{
+		ft_env();
+	}
 
 }
 
@@ -137,6 +167,7 @@ void	init_global(char **env)
 	global = malloc(sizeof(t_glo));
 
 	global->env = ft_strrdup(env);
+	global->last_status = 0;
 }
 
 int	main(int ac, char **av, char **env)
