@@ -3,20 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/12 16:31:17 by mdoumi            #+#    #+#              #
-#    Updated: 2023/05/12 18:28:49 by mdoumi           ###   ########.fr        #
+#    Updated: 2023/05/12 19:43:56 by alecoutr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-SRCS = src/minishell.c
+SRCS = src/minishell.c \
+	   src/export.c \
+	   src/ft_split.c \
+	   src/ft_strlen.c
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 INC = -I ./include
-#FLAGS = -Wall -Wextra -Werror -g -g3
+FLAGS = -Wall -Wextra -Werror -g -g3
 
 LIBREADLINE	= -lreadline -L /Users/$$USER/.brew/opt/readline/lib
 INCREADLINE	= -I /Users/$$USER/.brew/opt/readline/include

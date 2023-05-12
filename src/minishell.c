@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:28:50 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/12 18:53:23 by mdoumi           ###   ########.fr       */
+/*   Updated: 2023/05/12 18:58:37 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,25 +139,25 @@ void	init_global(char **env)
 	global->env = ft_strrdup(env);
 }
 
-int	main(int ac, char **av, char **env)
-{
-	(void)ac;
-	(void)av;
-	(void)env;
+// int	main(int ac, char **av, char **env)
+// {
+// 	(void)ac;
+// 	(void)av;
+// 	(void)env;
 
-	char *line;
-	int	run;
+// 	char *line;
+// 	int	run;
 
-	init_global(env);
-	run = 1;
-	while (run)
-	{
-		if (line)
-			free(line);
-		line = readline("minishell ");
-		if (check_line(line))
-		{
-			launch_command(line);
-		}
-	}
-}
+// 	init_global(env);
+// 	run = 1;
+// 	while (run)
+// 	{
+// 		if (line)
+// 			free(line);
+// 		line = readline("minishell ");
+// 		if (check_line(line))
+// 		{
+// 			launch_command(line);
+// 		}
+// 	}
+// }
