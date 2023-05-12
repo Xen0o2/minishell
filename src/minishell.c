@@ -6,15 +6,83 @@
 /*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:28:50 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/12 16:57:48 by mdoumi           ###   ########.fr       */
+/*   Updated: 2023/05/12 18:26:31 by mdoumi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	is_white(char c)
+{
+	if (c == ' ' || c == '\r' || c == '\t' || c == '\n' || c == '\v' || c == '\f')
+		return (1);
+	return (0);
+}
+
 int	check_line(char *str)
 {
-	
+	int	i;
+	int	is_valid;
+
+	i = 0;
+	is_valid = 0;
+	while (str[i])
+	{
+		if (!is_white(str[i]))
+			is_valid = 1;
+		i++;
+	}
+	return (is_valid);
+}
+
+void	ft_exit()
+{
+	exit(0);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	unsigned int	i;
+
+	i = 0;
+	if (!s1 || !s2)
+		return (1);
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+char	*ft_lower(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if ('A' < str[i] && str[i] <= 'Z')
+			str[i] += 'a' - 'A';
+		i++;
+	}
+	return (str);
+}
+
+void	launch_command(char *str)
+{
+	if (ft_strcmp(ft_lower(str), "exit") == 0)
+		ft_exit();
+	else if (ft_strcmp(ft_lower(str), "export") == 0)
+	{}
+	else if (ft_strcmp(ft_lower(str), "unset") == 0)
+	{}
+	else if (ft_strcmp(ft_lower(str), "echo") == 0)
+	{}
+	else if (ft_strcmp(ft_lower(str), "cd") == 0)
+	{}
+	else if (ft_strcmp(ft_lower(str), "pwd") == 0)
+	{}
+	else if (ft_strcmp(ft_lower(str), "env") == 0)
+	{}
+
 }
 
 int	main(int ac, char **av, char **env)
@@ -34,8 +102,7 @@ int	main(int ac, char **av, char **env)
 		line = readline("minishell ");
 		if (check_line(line))
 		{
-			printf("Lets go\n");
+			launch_command(line);
 		}
-
 	}
 }
