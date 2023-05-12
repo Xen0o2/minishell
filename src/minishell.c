@@ -6,7 +6,7 @@
 /*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:28:50 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/12 18:48:03 by mdoumi           ###   ########.fr       */
+/*   Updated: 2023/05/12 18:53:23 by mdoumi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,16 @@ void	launch_command(char *str)
 
 }
 
+int	ft_strrlen(char **strr)
+{
+	int	i;
+
+	i = 0;
+	while (strr && strr[i])
+		i++;
+	return (i);
+}
+
 char	*ft_strdup(char *s1)
 {
 	char	*s2;
@@ -124,6 +134,8 @@ char	**ft_strrdup(char **s1)
 
 void	init_global(char **env)
 {
+	global = malloc(sizeof(t_glo));
+
 	global->env = ft_strrdup(env);
 }
 
