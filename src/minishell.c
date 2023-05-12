@@ -6,7 +6,7 @@
 /*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:28:50 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/12 18:45:04 by mdoumi           ###   ########.fr       */
+/*   Updated: 2023/05/12 18:48:03 by mdoumi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,27 @@ void	launch_command(char *str)
 	else if (ft_strcmp(ft_lower(str), "env") == 0)
 	{}
 
+}
+
+char	*ft_strdup(char *s1)
+{
+	char	*s2;
+	int		len;
+
+	len = 0;
+	while (s1[len])
+		len++;
+	s2 = malloc((len + 1) * sizeof(char));
+	if (s2 == NULL)
+		return (NULL);
+	len = 0;
+	while (s1[len])
+	{
+		s2[len] = s1[len];
+		len++;
+	}
+	s2[len] = '\0';
+	return (s2);
 }
 
 char	**ft_strrdup(char **s1)
