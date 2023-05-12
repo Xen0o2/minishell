@@ -12,4 +12,12 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+typedef struct s_glo
+{
+	char	**env;
+	int		last_status;
+}	t_glo;
+
+t_glo	*global;
+
 #endif
