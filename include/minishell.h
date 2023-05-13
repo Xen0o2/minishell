@@ -25,5 +25,8 @@ char	*ft_strdup(char *s1);
 char    **ft_split(char *s, char c);
 char    *ft_substr(char *s, int start, int len);
 int		ft_strlen(char *str);
+int		ft_strrlen(char **str);
+int 	ft_strcmp(char *s1, char *s2);
+int		ft_strrlen(char **strr);
 
 #endif

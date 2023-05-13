@@ -6,7 +6,7 @@
 #    By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/12 16:31:17 by mdoumi            #+#    #+#              #
-#    Updated: 2023/05/12 19:43:56 by alecoutr         ###   ########.fr        #
+#    Updated: 2023/05/13 17:46:22 by alecoutr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 SRCS = src/minishell.c \
 	   src/export.c \
 	   src/ft_split.c \
-	   src/ft_strlen.c
+	   src/ft_strlen.c 
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
