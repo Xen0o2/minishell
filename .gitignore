@@ -1,3 +1,6 @@
-.minishell
+minishell
 *.o
 */*.o
+
+.vscode/*
+.vscode
