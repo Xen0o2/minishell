@@ -6,7 +6,7 @@
 /*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 19:23:06 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/14 19:23:39 by mdoumi           ###   ########.fr       */
+/*   Updated: 2023/05/15 16:00:30 by mdoumi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_line	*fill_line(char *str, int *i, int *j)
 	clean->raw_sans_sep = ft_substr(str, *j, (*i - *j) - (*i - count));
 	clean->fields = better_split(clean->raw_sans_sep, is_white);
 	clean->command = ft_strdup(clean->fields[0]);
+	clean->raw_sans_com = ft_substr(str, ft_strlen(clean->command) + *j, *i - count);
 	clean->args = malloc(sizeof(char *) * ft_strrlen(clean->fields));
 	z = 0;
 	while (clean->fields[++z])

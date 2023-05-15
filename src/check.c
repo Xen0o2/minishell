@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/14 19:01:03 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/15 15:18:46 by mdoumi           ###   ########.fr       */
+/*   Created: 2023/05/15 16:27:10 by mdoumi            #+#    #+#             */
+/*   Updated: 2023/05/15 16:50:34 by mdoumi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_sep(char c)
+int	check_exit(char **args)
 {
-	if (c == '|' || c == '>' || c == '<')
-		return (1);
-	return (0);
-}
-
-int	is_white(char c)
-{
-	if (c == ' ' || c == '\r' || c == '\t' || c == '\n'
-		|| c == '\v' || c == '\f')
-		return (1);
-	return (0);
+	if (ft_strrlen(args) > 1)
+		return ((printf("Error\n"), 1));
 }

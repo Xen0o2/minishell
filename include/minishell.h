@@ -6,7 +6,7 @@
 /*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 19:26:16 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/14 19:39:25 by mdoumi           ###   ########.fr       */
+/*   Updated: 2023/05/15 16:19:25 by mdoumi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_line
 {
 	char	*raw;
 	char	*raw_sans_sep;
+	char	*raw_sans_com;
 
 	char	*command;
 	char	**args;
@@ -77,10 +78,11 @@ char	*ft_substr(char *s, int start, int len);
 //minishell.c
 int		is_white(char c);
 int		check_line(char *str);
-void	ft_exit(void);
+void	ft_exit(char **args);
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_lower(char *str);
-void	launch_command(char *str);
+void	launch_command(t_line *line);
+int		ft_tablen(t_line **tab);
 void	init_global(char **env);
 
 //parsing.c
