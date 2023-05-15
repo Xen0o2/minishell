@@ -1,19 +1,8 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/14 19:25:56 by mdoumi            #+#    #+#              #
-#    Updated: 2023/05/14 19:36:48 by mdoumi           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = minishell
 SRCS =	\
 		src/better_split.c \
 		src/builtin.c \
+    src/export.c \
 		src/ft_strcmp.c \
 		src/ft_strdup.c \
 		src/ft_strlen.c \
@@ -25,7 +14,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 INC = -I ./include
-#FLAGS = -Wall -Wextra -Werror -g -g3
+FLAGS = -Wall -Wextra -Werror -g -g3
 
 LIBREADLINE	= -lreadline -L /Users/$$USER/.brew/opt/readline/lib
 INCREADLINE	= -I /Users/$$USER/.brew/opt/readline/include
