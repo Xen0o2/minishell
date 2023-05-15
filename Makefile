@@ -1,20 +1,15 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/12 16:31:17 by mdoumi            #+#    #+#              #
-#    Updated: 2023/05/13 17:46:22 by alecoutr         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = minishell
-SRCS = src/minishell.c \
-	   src/export.c \
-	   src/ft_split.c \
-	   src/ft_strlen.c 
+SRCS =	\
+		src/better_split.c \
+		src/builtin.c \
+    src/export.c \
+		src/ft_strcmp.c \
+		src/ft_strdup.c \
+		src/ft_strlen.c \
+		src/ft_substr.c \
+		src/minishell.c \
+		src/parsing.c \
+		src/utils.c
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc

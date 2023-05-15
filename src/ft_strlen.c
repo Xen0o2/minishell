@@ -1,23 +1,21 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 19:39:50 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/05/12 19:44:05 by alecoutr         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-    int length;
+	int	i;
 
-    length = 0;
-    while (str[length])
-        length++;
-    return (length);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int	ft_strrlen(char **strr)
+{
+	int	i;
+
+	i = 0;
+	while (strr && strr[i])
+		i++;
+	return (i);
 }
