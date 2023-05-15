@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:48:24 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/05/13 18:13:05 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:01:48 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**sort_env()
 
     times = 0;
     move = 1;
-    copy = ft_strrdup(global->env);
+    copy = ft_strrdup(g_lobal->env);
     length = ft_strrlen(copy);
     while (move)
     {
@@ -50,9 +50,16 @@ char	**sort_env()
 	return (copy);
 }
 
+int export_split(char c)
+{
+    return (c == '=');
+}
+
+
 void    export_without_args()
 {
     int     i;
+	int		x;
 	char	**sorted_env;
     char    **env;
 
@@ -60,43 +67,103 @@ void    export_without_args()
 	sorted_env = sort_env();
     while (sorted_env[++i])
     {
-        env = ft_split(sorted_env[i], '=');
+        env = better_split(sorted_env[i], &export_split);
+        free(sorted_env[i]);
         if (env[1])
-            printf("declare -x %s=\"%s\"\n", env[0], env[1]);
+			printf("declare -x %s=\"%s\"\n", env[0], env[1]);
         else
-            printf("declare -x %s\n", env[0]);
+			printf("declare -x %s\n", env[0]);
+		x = -1;
+		while (env[++x])
+			free(env[x]);
+		free(env);
     }
-    i = -1;
-    while (env[++i])
-        free(env[i]);
+    free(sorted_env);
 }
 
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
+}
+
+int	realloc_env(int i)
+{
+	char	**tmp;
+	int		length;
+
+	tmp = ft_strrdup(g_lobal->env);
+	length = ft_strrlen(g_lobal->env);
+	free_tab(g_lobal->env);
+	g_lobal->env = malloc(sizeof(char *) * (length + i));
+	length = -1;
+	while (tmp[++length])
+		g_lobal->env[length] = ft_strdup(tmp[length]);
+	free_tab(tmp);
+	return (length);
+}
+
+int	invalid_char_in_arg(char *arg)
+{
+	int		i;
+	int		x;
+	char	*invalid_char;
+
+	i = -1;
+	invalid_char = "$#+-/@.^%!-?.,;:{}[]&";
+	while (arg[++i])
+	{
+		x = -1;
+		while (invalid_char[++x])
+			if (arg[i] == invalid_char[x])
+				return (1);
+	}
+	return (0);
+}
+
+int	check_export_args(char **args)
+{
+	int		i;
+	int		length;
+	int		valid_args;
+
+	length = ft_strrlen(args);
+	valid_args = 0;
+	if (!length)
+		return (-1);
+	i = -1;
+	while (args[++i])
+	{
+		if (args[i][0] >= '0' || args[i][0] <= '9')
+			return (printf("export: `%s': not a valid identifier\n"
+			, args[i]), 0);
+		if (!invalid_char_in_arg(args[i]))
+			return (printf("export: `%s': not a valid identifier\n"
+			, args[i]), 0);
+		valid_args++;
+	}
+	return (valid_args);
+}
+                                                                                                                                                                                                                            
 void    export(char **args)
 {
     // args = {"ac=salut", "ab"};
-    char    **tmp;
-    int     i;
+    int     valid_args;
     int     length;
 
-    i = 0;
-    while (args[i])
-        i++;
-    if (i == 0)
+    valid_args = check_export_args(args);
+    if (valid_args == -1)
         export_without_args();
     else
     {
-        tmp = ft_strrdup(global->env);
-        length = 0;
-        while (global->env[length])
-            length++;
-        free(global->env);
-        global->env = malloc(sizeof(char *) * (length + i));
-        i = -1;
-        while (tmp[++i])
-            global->env[i] = tmp[i];
-        i = -1;
-        while (args[++i])
-            global->env[length + i] = ft_strdup(args[i]);
+		length = realloc_env(valid_args);
+		valid_args = -1;
+        while (args[++valid_args])
+            g_lobal->env[length + valid_args] = ft_strdup(args[valid_args]);
     }
 }
 
@@ -106,20 +173,21 @@ void    print_env(void)
 
     i = -1;
     printf("env\n");
-    while (global->env[++i])
-        printf("%s\n", global->env[i]);
+    while (g_lobal->env[++i])
+        printf("%s\n", g_lobal->env[i]);
 }
 
 int main(int ac, char **av, char **env)
 {
     (void)ac;
     (void)av;
-    global = malloc(sizeof(t_glo));
+    g_lobal = malloc(sizeof(t_glo));
 
-    global->env = ft_strrdup(env);
-    
+    g_lobal->env = ft_strrdup(env);
+ 
     // char *str[3] = {"username=alecoutr", "password", NULL};
-    char *stre[0] = {};
+    char **stre = malloc(sizeof(char *));
     // export(str);
-    export(stre);	
+    export(stre);
+	free(stre);
 }
