@@ -2,7 +2,8 @@ NAME = minishell
 SRCS =	\
 		src/better_split.c \
 		src/builtin.c \
-    src/export.c \
+    	src/ft_export.c \
+    	src/export_args.c \
 		src/ft_strcmp.c \
 		src/ft_strdup.c \
 		src/ft_strlen.c \

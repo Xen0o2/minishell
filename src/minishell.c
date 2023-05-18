@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/18 15:52:06 by alecoutr          #+#    #+#             */
+/*   Updated: 2023/05/18 15:52:09 by alecoutr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	check_line(char *str)
@@ -66,26 +78,26 @@ void	init_global(char **env)
 	g_lobal->last_status = 0;
 }
 
-// int	main(int ac, char **av, char **env)
-// {
-// 	char	*line;
-// 	t_line	**tab;
-// 	int		run;
+int	main(int ac, char **av, char **env)
+{
+	char	*line;
+	t_line	**tab;
+	int		run;
 
-// 	(void)ac;
-// 	(void)av;
-// 	init_global(env);
-// 	run = 1;
-// 	while (run)
-// 	{
-// 		if (line)
-// 			free(line);
-// 		line = readline("minishell ");
-// 		if (check_line(line))
-// 		{
-// 			tab = parse_line(line);
-// 			afficher_line(tab[0]);
-// 			//launch_command(tab);
-// 		}
-// 	}
-// }
+	(void)ac;
+	(void)av;
+	init_global(env);
+	run = 1;
+	while (run)
+	{
+		if (line)
+			free(line);
+		line = readline("minishell ");
+		if (check_line(line))
+		{
+			tab = parse_line(line);
+			afficher_line(tab[0]);
+			//launch_command(tab);
+		}
+	}
+}

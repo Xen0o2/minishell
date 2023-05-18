@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 19:26:16 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/14 19:39:25 by mdoumi           ###   ########.fr       */
+/*   Updated: 2023/05/18 15:51:06 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <errno.h>
+# include <string.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -62,6 +63,20 @@ void	ft_exit(void);
 void	ft_env(void);
 void	ft_pwd(void);
 void	ft_cd(char *path);
+void	ft_export(char **args);
+
+
+//ft_export.c
+void	ft_strswap(char **s1, char **s2);
+char	**sort_env(void);
+void	export_without_args(void);
+int		realloc_env(void);
+
+//export_args.c
+int		invalid_char_in_arg(char *arg);
+int		is_valid_arg(char *arg);
+int		export_split(char c);
+void	add_arg(char *arg);
 
 //ft_strdup.c
 char	*ft_strdup(char *s1);
@@ -103,5 +118,6 @@ int		ft_strlen(char *str);
 int		ft_strrlen(char **str);
 int 	ft_strcmp(char *s1, char *s2);
 int		ft_strrlen(char **strr);
+void	free_tab(char **tab);
 
 #endif
