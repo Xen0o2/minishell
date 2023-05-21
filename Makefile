@@ -4,6 +4,7 @@ SRCS =	\
 		src/builtin.c \
     	src/ft_export.c \
     	src/export_args.c \
+    	src/ft_unset.c \
 		src/ft_strcmp.c \
 		src/ft_strdup.c \
 		src/ft_strlen.c \
@@ -23,7 +24,7 @@ INCREADLINE	= -I /Users/$$USER/.brew/opt/readline/include
 all: $(NAME)
 
 ${NAME}: ${OBJS}
-	$(CC) -o $(NAME) $(OBJS) $(LIBREADLINE) $(INC) $(INCREADLINE)
+	$(CC) ${FLAGS} -o $(NAME) $(OBJS) $(LIBREADLINE) $(INC) $(INCREADLINE)
 
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o} ${INC} ${INCREADLINE}

@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:52:06 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/05/18 15:52:09 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/05/21 11:57:56 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,18 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	init_global(env);
+	line = NULL;
 	run = 1;
 	while (run)
 	{
 		if (line)
 			free(line);
-		line = readline("minishell ");
+		line = readline("minishell > ");
 		if (check_line(line))
 		{
 			tab = parse_line(line);
 			afficher_line(tab[0]);
-			//launch_command(tab);
+			// launch_command(tab[0]->command);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:48:24 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/05/18 15:51:17 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:05:13 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	export_without_args(void)
 	sorted_env = sort_env();
 	while (sorted_env[++i])
 	{
-		env = better_split(sorted_env[i], &export_split);
+		env = better_split(sorted_env[i], &equal_split);
 		if (env[1])
 			printf("declare -x %s=\"%s\"\n", env[0], env[1]);
 		else

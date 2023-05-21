@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 19:26:16 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/18 15:51:06 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:05:05 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		realloc_env(void);
 //export_args.c
 int		invalid_char_in_arg(char *arg);
 int		is_valid_arg(char *arg);
-int		export_split(char c);
+int		equal_split(char c);
 void	add_arg(char *arg);
 
 //ft_strdup.c

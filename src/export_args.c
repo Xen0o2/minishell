@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:46:49 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/05/18 15:52:43 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:05:00 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	is_valid_arg(char *arg)
 	return (1);
 }
 
-int	export_split(char c)
+int	equal_split(char c)
 {
 	return (c == '=');
 }
