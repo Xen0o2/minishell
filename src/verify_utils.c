@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   verify_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ^@^ Foxan ^@^ <thibaut.unsinger@gmail.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/14 19:01:03 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/15 15:18:46 by mdoumi           ###   ########.fr       */
+/*   Created: 2023/04/13 14:09:45 by ^@^ Foxan ^@^     #+#    #+#             */
+/*   Updated: 2023/04/13 14:09:46 by ^@^ Foxan ^@^    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_sep(char c)
+int	is_only_spaces(char *str)
 {
-	if (c == '|' || c == '>' || c == '<')
-		return (1);
-	return (0);
+	int	i;
+
+	i = -1;
+	while (str && str[++i])
+		if (str[i] != ' ')
+			return (0);
+	return (1);
 }
 
-int	is_white(char c)
+int	is_dsep(int s)
 {
-	if (c == ' ' || c == '\r' || c == '\t' || c == '\n'
-		|| c == '\v' || c == '\f')
-		return (1);
-	return (0);
+	return (s == 3 || s == 5);
+}
+
+int	next_is_sep(char *str)
+{
+	int	j;
+
+	j = 0;
+	while (str[j] == ' ')
+		j++;
+	return (is_sep(&str[j]));
 }

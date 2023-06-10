@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_splitargs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ^@^ Foxan ^@^ <thibaut.unsinger@gmail.com  +#+  +:+       +#+        */
+/*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 11:01:46 by ^@^ Foxan ^@^     #+#    #+#             */
-/*   Updated: 2022/11/02 11:01:46 by ^@^ Foxan ^@^    ###   ########.fr       */
+/*   Created: 2022/11/02 11:01:46 by ^@^ Foxan ^       #+#    #+#             */
+/*   Updated: 2023/02/24 22:09:45 by mdoumi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "../include/minishell.h"
 
 static int	count_words(const char *s, char c);
 static char	**single_word(const char *s, char c);
 static char	*dupstr(const char *s1, char c, int *i);
 static void	freel(char **str, int n);
 
-char	**ft_split(char const *s, char c)
+char	**ft_splitargs(const char *s, char c)
 {
 	char	**res;
 	int		i;
@@ -30,9 +30,9 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	i = -1;
 	j = 0;
-	while (s[++i] != 0 && j < count_words(s, c))
+	while (s[++i] && j < count_words(s, c))
 	{
-		while (s[i] != 0 && s[i] == c)
+		while (s[i] != 0 && s[i] == c && s[i] != '\'' && s[i] != '\"')
 			i++;
 		res[j] = dupstr(&s[i], c, &i);
 		if (res[j] == NULL)
@@ -48,16 +48,19 @@ char	**ft_split(char const *s, char c)
 
 static int	count_words(const char *s, char c)
 {
-	int	i;
-	int	count;
-	int	last;
+	int		i;
+	int		count;
+	int		last;
+	char	sep;
 
 	i = 0;
 	count = 0;
 	last = 1;
-	while (s[i] != 0)
+	sep = c;
+	while (s[i])
 	{
-		if (s[i] != c)
+		set_sep(&sep, c, s, i);
+		if (s[i] != sep)
 		{
 			if (last == 1)
 				count++;
@@ -95,16 +98,22 @@ static char	*dupstr(const char *s1, char c, int *i)
 {
 	char	*s2;
 	int		len;
+	char	sep;
 
 	len = 0;
-	while (s1[len] && s1[len] != c)
+	sep = c;
+	while (s1[len] && (s1[len] != c || sep != c))
+	{
+		set_sep(&sep, c, s1, len);
 		len++;
+	}
 	s2 = malloc((len + 1) * sizeof(char));
 	if (s2 == NULL)
 		return (NULL);
 	len = 0;
-	while (s1[len] != '\0' && s1[len] != c)
+	while (s1[len] && (s1[len] != c || sep != c))
 	{
+		set_sep(&sep, c, s1, len);
 		s2[len] = s1[len];
 		len++;
 	}

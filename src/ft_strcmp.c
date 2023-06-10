@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ^@^ Foxan ^@^ <thibaut.unsinger@gmail.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/14 19:36:30 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/05/14 19:36:37 by mdoumi           ###   ########.fr       */
+/*   Created: 2023/03/04 13:45:38 by ^@^ Foxan ^@^     #+#    #+#             */
+/*   Updated: 2023/03/04 13:45:39 by ^@^ Foxan ^@^    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../include/minishell.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {
