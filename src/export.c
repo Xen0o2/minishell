@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:48:24 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/05/15 19:01:48 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:15:20 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,29 +165,4 @@ void    export(char **args)
         while (args[++valid_args])
             g_lobal->env[length + valid_args] = ft_strdup(args[valid_args]);
     }
-}
-
-void    print_env(void)
-{
-    int i;
-
-    i = -1;
-    printf("env\n");
-    while (g_lobal->env[++i])
-        printf("%s\n", g_lobal->env[i]);
-}
-
-int main(int ac, char **av, char **env)
-{
-    (void)ac;
-    (void)av;
-    g_lobal = malloc(sizeof(t_glo));
-
-    g_lobal->env = ft_strrdup(env);
- 
-    // char *str[3] = {"username=alecoutr", "password", NULL};
-    char **stre = malloc(sizeof(char *));
-    // export(str);
-    export(stre);
-	free(stre);
 }

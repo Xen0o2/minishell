@@ -66,26 +66,27 @@ void	init_global(char **env)
 	g_lobal->last_status = 0;
 }
 
-// int	main(int ac, char **av, char **env)
-// {
-// 	char	*line;
-// 	t_line	**tab;
-// 	int		run;
+int	main(int ac, char **av, char **env)
+{
+	char	*line;
+	t_line	**tab;
+	int		run;
 
-// 	(void)ac;
-// 	(void)av;
-// 	init_global(env);
-// 	run = 1;
-// 	while (run)
-// 	{
-// 		if (line)
-// 			free(line);
-// 		line = readline("minishell ");
-// 		if (check_line(line))
-// 		{
-// 			tab = parse_line(line);
-// 			afficher_line(tab[0]);
-// 			//launch_command(tab);
-// 		}
-// 	}
-// }
+	(void)ac;
+	(void)av;
+	init_global(env);
+	run = 1;
+	while (run)
+	{
+		if (line)
+			free(line);
+		line = readline("minishell ");
+		if (check_line(line))
+		{
+			tab = parse_line(line);
+			// afficher_line(tab[0]);
+			afficher_tab(tab);
+			launch_command(tab);
+		}
+	}
+}
