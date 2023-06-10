@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 19:01:03 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/06/01 14:17:51 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:37:49 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,14 @@ int	is_white(char c)
 		|| c == '\v' || c == '\f')
 		return (1);
 	return (0);
+}
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
 }
