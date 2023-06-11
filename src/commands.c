@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdoumi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 13:10:05 by ^@^ Foxan ^       #+#    #+#             */
-/*   Updated: 2023/04/13 15:07:39 by mdoumi           ###   ########.fr       */
+/*   Updated: 2023/06/10 15:45:22 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	execute_command(char *command, t_cp *cmd_line)
 		ft_cd(cmd_line->args[0]);
 	else if (!ft_strcmp(command, "echo") || !ft_strcmp(command, "ECHO"))
 		ft_echo(cmd_line->args);
-	else if (!ft_strcmp(command, "uwu") || !ft_strcmp(command, "UWU"))
-		fordprefect();
 	else if (!ft_strcmp(command, "env") || !ft_strcmp(command, "ENV"))
 		ft_env();
 	else if (!ft_strcmp(command, "exit") || !ft_strcmp(command, "EXIT"))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ^@^ Foxan ^@^ <thibaut.unsinger@gmail.com  +#+  +:+       +#+        */
+/*   By: alecoutr <thibaut.unsinger@gmail.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 11:33:29 by ^@^ Foxan ^@^     #+#    #+#             */
-/*   Updated: 2022/11/10 11:33:31 by ^@^ Foxan ^@^    ###   ########.fr       */
+/*   Created: 2022/11/10 11:33:29 by alecoutr     #+#    #+#             */
+/*   Updated: 2022/11/10 11:33:31 by alecoutr    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

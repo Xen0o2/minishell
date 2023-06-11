@@ -48,7 +48,6 @@ SRCS			:=	./src/main.c \
 					./src/verify.c \
 					./src/verify_utils.c \
 					./src/replace.c \
-					./src/fordprefect.c \
 					./src/pipe.c \
 					./src/pipe_utils.c \
 					./src/pipe2.c \
