@@ -6,99 +6,110 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:35:52 by mdoumi            #+#    #+#             */
-/*   Updated: 2023/06/11 17:37:37 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:06:37 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_strswap(char **s1, char **s2)
-{
-	char	*copy;
+void	case1(char ***sorted2);
+void	case2(char ***str, char ***s, char ***fie, int *error);
 
-	copy = *s1;
-	*s1 = *s2;
-	*s2 = copy;
+int	export_error(int error, char *str)
+{
+	if (error == 1)
+		printf("bash: export: `%s': not a valid identifier\n", str);
+	return (1);
 }
 
-char	**sort_env(void)
+int	check_export_args(char **fields)
 {
-	char	**copy;
 	int		i;
-	int		times;
-	int		length;
-	int		move;
+	int		j;
+	char	**buff;
 
-	times = 0;
-	move = 1;
-	copy = ft_strrdup(g_vars->env);
-	length = ft_strrlen(copy);
-	while (move)
+	i = 0;
+	while (fields[i])
 	{
-		move = 0;
-		i = -1;
-		while (++i < length - times - 1)
+		j = 0;
+		buff = ft_split(fields[i], '=');
+		if (fields[i][0] == '=' || !buff || !buff[0] || !(is_alpha(buff[0][0])
+			|| buff[0][0] == '_'))
+			return (free_s(buff), export_error(1, fields[i]));
+		while (buff[0][j])
 		{
-			if (ft_strcmp(copy[i], copy[i + 1]) > 0)
+			if (!is_alnumscore(buff[0][j]))
+				return (free_s(buff), export_error(1, fields[i]));
+			j++;
+		}
+		free_s(buff);
+		i++;
+	}
+	return (0);
+}
+
+void	ft_export(char **fields)
+{
+	char	**str;
+	char	**sorted;
+	char	**splited;
+	int		error;
+
+	error = 0;
+	sorted = sorted_env();
+	if (fields[0][0] == ' ')
+		case1(&sorted);
+	else
+		case2(&str, &splited, &fields, &error);
+	free_s(sorted);
+	g_vars->last_status = error;
+}
+
+void	case1(char ***sorted2)
+{
+	char	**sorted;
+	char	**splited;
+	int		i;
+
+	i = 0;
+	sorted = *sorted2;
+	while (sorted[i])
+	{
+		splited = ft_split(sorted[i], '=');
+		if (splited[1])
+			printf("declare -x %s=\"%s\"\n", splited[0], splited[1]);
+		else
+			printf("declare -x %s\n", splited[0]);
+		free_s(splited);
+		i++;
+	}
+}
+
+void	case2(char ***str, char ***s, char ***fie, int *error)
+{
+	t_ab	y;
+
+	y.i = -1;
+	if (check_export_args(*fie) == 1)
+		return ((void)(*error = 1));
+	while ((*fie)[++y.i])
+	{
+		((void)0, *s = ft_split((*fie)[y.i], '='), y.c = ft_getenv((*s)[0]));
+		if (y.c != NULL)
+		{
+			y.j = -1;
+			while (g_vars->env[++y.j])
 			{
-				ft_strswap(&copy[i], &copy[i + 1]);
-				move = 1;
+				*str = ft_split(g_vars->env[y.j], '=');
+				if (ft_strcmp((*str)[0], (*s)[0]) == 0)
+					(free(g_vars->env[y.j]),
+						g_vars->env[y.j] = ft_strdup((*fie)[y.i]));
+				free_s(*str);
 			}
 		}
-		times++;
-	}
-	return (copy);
-}
-
-void	export_without_args(void)
-{
-	int		i;
-	char	**sorted_env;
-	char	**env;
-
-	i = -1;
-	sorted_env = sort_env();
-	while (sorted_env[++i])
-	{
-		env = better_split(sorted_env[i], &equal_split);
-		if (env[1])
-			printf("declare -x %s=\"%s\"\n", env[0], env[1]);
-		else
-			printf("declare -x %s\n", env[0]);
-		free_tab(env);
-	}
-	free_tab(sorted_env);
-}
-
-int	realloc_env(void)
-{
-	char	**tmp;
-	int		length;
-
-	tmp = ft_strrdup(g_vars->env);
-	length = ft_strrlen(g_vars->env);
-	free_tab(g_vars->env);
-	g_vars->env = malloc(sizeof(char *) * (length + 1));
-	length = -1;
-	while (tmp[++length])
-		g_vars->env[length] = ft_strdup(tmp[length]);
-	free_tab(tmp);
-	return (length);
-}
-
-void	ft_export(char **args)
-{
-	int	i;
-	int	length;
-
-	length = ft_strrlen(args);
-	if (length == 0)
-		export_without_args();
-	else
-	{
-		i = -1;
-		while (args[++i])
-			if (is_valid_arg(args[i]))
-				add_arg(args[i]);
+		if (y.c == NULL)
+			((void)0, g_vars->env = ft_strrcpyy(g_vars->env),
+				g_vars->env[ft_strrlen(g_vars->env)] = ft_strdup((*fie)[y.i]));
+		(free_s((*s)), free(y.c));
 	}
 }

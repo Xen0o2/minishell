@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:54:44 by ^@^ Foxan ^       #+#    #+#             */
-/*   Updated: 2023/06/11 17:44:34 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:03:46 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,11 +192,7 @@ void	ft_strswap(char **s1, char **s2);
 char	**sort_env(void);
 void	export_without_args(void);
 int		realloc_env(void);
-void	ft_export(char **args);
-int		invalid_char_in_arg(char *arg);
-int		is_valid_arg(char *arg);
-int		equal_split(char c);
-void	add_arg(char *arg);
-char	**better_split(char const *s, int (*cmp)(char c));
+void	ft_export(char **fields);
+int		check_export_args(char **fields);
 
 #endif //MINISHELL_H
