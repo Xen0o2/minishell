@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:54:44 by ^@^ Foxan ^       #+#    #+#             */
-/*   Updated: 2023/06/11 17:41:32 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:44:34 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,5 +197,6 @@ int		invalid_char_in_arg(char *arg);
 int		is_valid_arg(char *arg);
 int		equal_split(char c);
 void	add_arg(char *arg);
+char	**better_split(char const *s, int (*cmp)(char c));
 
 #endif //MINISHELL_H
