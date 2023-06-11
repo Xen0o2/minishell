@@ -1,0 +1,14 @@
+*.o
+*.a
+*.out
+*.txt
+test.c
+minishell
+.vscode/
+.idea/
+.localized
+.minishell_history
+.here_doc
+.DS_Store
+*.gch
+minishell.dSYM/
