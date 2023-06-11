@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:54:44 by ^@^ Foxan ^       #+#    #+#             */
-/*   Updated: 2023/06/10 15:45:46 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:41:32 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,6 @@ void	substitute(char **field);
 char	*ft_strdup(char *s1);
 char	**ft_strrdup(char **s1);
 int		ft_strcmp(char *s1, char *s2);
-int		check_export_args(char **fields);
-int		export_error(int error, char *str);
 char	**ft_split(char const *s, char c);
 void	free_s(char **str);
 void	ft_pwd(void);
@@ -123,7 +121,6 @@ void	ft_cd(char *path);
 t_cp	*la_commande_sans_la_fleche(t_cp *cdm);
 void	ft_echo(char **fields);
 int		update(char c, int *in_q);
-void	ft_export(char **fields);
 void	ft_unset(char **fields);
 char	**sorted_env(void);
 char	*ft_enlever_redirection(char *str);
@@ -144,14 +141,12 @@ int		is_sep(char *c);
 t_cp	*new_part(char *str);
 t_cp	*append(t_cp **command, t_cp	*new_part);
 int		ft_len(t_cp	*liste);
-void	print_line(t_cp *line);
 int		is_alpha(char c);
 int		is_alnumscore(char c);
 char	*replace_env(char *str, int *i);
 char	*find_var(char *str, int *j, int i);
 char	*replace_home(char *str, int *i);
 char	*replace_status(char *str, int *i);
-void	fordprefect(void);
 t_cp	*create_command(char *str, int fre);
 t_cp	*compress_args(t_cp *cmd_line);
 char	*ft_strdupnonl(char *s1);
@@ -171,7 +166,6 @@ void	store_in_history(char *line);
 void	ft_pipe(t_cp *cmd_line);
 void	gerer_txt(t_cp *cmd_line, int mode);
 void	ft_droite(t_cp *cmd_line, int mode);
-void	ft_droite_2(int fd, t_cp *cdm, char **buff);
 int		ft_cmp(char *c);
 char	*ft_itoa(int n);
 char	*ft_strjoinfree(char **s1, char const *s2);
@@ -180,8 +174,6 @@ char	*ft_strjoinnfree(char **s1, char **str2, char *sep);
 void	ft_pipex(t_cp *cmd_line);
 void	ft_extreme_gauche_2(t_cp *cmd_line);
 void	printe(char *str);
-void	case1(char ***sorted2);
-void	case2(char ***str, char ***splited, char ***fields, int *error);
 int		end(void);
 int		ft_atoi(char *str);
 void	exit_(t_cp *cmd_line);
@@ -196,5 +188,14 @@ int		is_simple_sep(char c);
 int		is_only_spaces(char *str);
 int		is_dsep(int s);
 int		next_is_sep(char *str);
+void	ft_strswap(char **s1, char **s2);
+char	**sort_env(void);
+void	export_without_args(void);
+int		realloc_env(void);
+void	ft_export(char **args);
+int		invalid_char_in_arg(char *arg);
+int		is_valid_arg(char *arg);
+int		equal_split(char c);
+void	add_arg(char *arg);
 
 #endif //MINISHELL_H
